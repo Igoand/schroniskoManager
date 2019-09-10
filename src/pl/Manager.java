@@ -25,6 +25,7 @@ public class Manager {
 				break;
 			case "u":
 				schronisko.usunZwierze(new Zwierze(bufferedReader.readLine()));
+				break;
 			case "k": {
 				System.out.print("Koniec pracy. Zamykam program.\n");
 				System.exit(0);
