@@ -1,15 +1,28 @@
 package pl;
 
+import java.awt.EventQueue;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import gui.MyFrame;
 import pliki.ObslugaTxtOdczyt;
 import pliki.ObslugaTxtZapis;
 
 public class Manager {
 
 	public static void main(String[] args) throws IOException {
+
+		EventQueue.invokeLater(new Runnable() {
+
+			@Override
+			public void run() {
+				new MyFrame();
+
+			}
+		});
+		
+		
 		String nazwaPliku = "daneSchorniska.txt";
 		Schronisko schronisko = new Schronisko(2);
 
