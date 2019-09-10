@@ -13,23 +13,20 @@ public class Manager {
 
 	public static void main(String[] args) throws IOException {
 
+		String nazwaPliku = "daneSchorniska.txt";
+		Schronisko schronisko = new Schronisko(3);
 		EventQueue.invokeLater(new Runnable() {
 
 			@Override
 			public void run() {
-				new MyFrame();
+				new MyFrame(schronisko);
 
 			}
 		});
-		
-		
-		String nazwaPliku = "daneSchorniska.txt";
-		Schronisko schronisko = new Schronisko(2);
-
 		ObslugaTxtOdczyt odczytPliku = new ObslugaTxtOdczyt(nazwaPliku);
 		schronisko.setLista_zwierzat(odczytPliku.odczytajPlik());
 
-		System.out.printf("Witaj w schronisku!\n" + "Co chcesz zrobiæ?\n" + "d - dodaj zwierze\n" + "u - uzun zwierze\n"
+		System.out.printf("Witaj w schronisku!\n" + "Co chcesz zrobiï¿½?\n" + "d - dodaj zwierze\n" + "u - uzun zwierze\n"
 				+ "s - stan schroniska\nk - koniec pracy\n\n");
 		String opcja = "p";
 		InputStreamReader inputStreamReader = new InputStreamReader(System.in);

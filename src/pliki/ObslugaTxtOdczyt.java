@@ -8,7 +8,7 @@ import java.util.Scanner;
 import pl.Zwierze;
 
 public class ObslugaTxtOdczyt {
-	
+
 	Scanner plikO;
 
 	public ObslugaTxtOdczyt(String plikO) throws FileNotFoundException {

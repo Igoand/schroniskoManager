@@ -21,17 +21,16 @@ public class Schronisko {
 		super();
 		this.liczbaMiejsc = liczbaMiejsc;
 	}
-
-	public Schronisko() {
-		this.liczbaMiejsc = 3;
-	}
+	/*
+	 * public Schronisko() { this.liczbaMiejsc = 3; }
+	 */
 
 	public void sprawdzLiczbeMiejsc() {
 		this.listaZwierzat();
 		if (getLiczbaMiejsc() > 0) {
 			System.out.printf("Wolne miejsca: %d\n", getLiczbaMiejsc());
 		} else {
-			System.out.println("Wszystkie miejsca zajête");
+			System.out.println("Wszystkie miejsca zajï¿½te");
 		}
 	}
 
@@ -44,14 +43,14 @@ public class Schronisko {
 			this.lista_zwierzat.add(zwierze);
 			zmniejszIloscMiejsc();
 		} else {
-			System.out.println("Nie mo¿na dodaæ zwierzaka. Schronisko jest pe³ne.");
+			System.out.println("Nie moï¿½na dodaï¿½ zwierzaka. Schronisko jest peï¿½ne.");
 		}
 	};
 
 	public void usunZwierze(Zwierze zwierze) {
 		for (int i = 0; i < this.lista_zwierzat.size(); i++) {
 			if (lista_zwierzat.get(i).getNazwa().equals(zwierze.getNazwa())) {
-				System.out.printf("Usuniêto zwierzê %s\n", lista_zwierzat.get(i).getNazwa());
+				System.out.printf("Usuniï¿½to zwierzï¿½ %s\n", lista_zwierzat.get(i).getNazwa());
 				lista_zwierzat.remove(i);
 				zwiekszIloscMiejsc();
 			} else {
