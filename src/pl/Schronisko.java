@@ -6,6 +6,14 @@ public class Schronisko {
 	private int liczbaMiejsc;
 	private ArrayList<Zwierze> lista_zwierzat = new ArrayList<Zwierze>();
 
+	public ArrayList<Zwierze> getLista_zwierzat() {
+		return lista_zwierzat;
+	}
+
+	public void setLista_zwierzat(ArrayList<Zwierze> lista_zwierzat) {
+		this.lista_zwierzat = lista_zwierzat;
+	}
+
 	/**
 	 * @param liczbaMiejsc
 	 */
@@ -47,7 +55,7 @@ public class Schronisko {
 				lista_zwierzat.remove(i);
 				zwiekszIloscMiejsc();
 			} else {
-				//System.out.printf("Brak %s w schronisku.\n", zwierze.getNazwa());
+				// System.out.printf("Brak %s w schronisku.\n", zwierze.getNazwa());
 			}
 		}
 	}
@@ -58,6 +66,17 @@ public class Schronisko {
 			pozycja += 1;
 			System.out.printf("%d: %s\n", pozycja, zwierze.getNazwa());
 		}
+	}
+
+	public ArrayList<String> listaZwierzatString() {
+		ArrayList<String> listaZwierzatString = new ArrayList<>();
+		// int pozycja = 0;
+		for (Zwierze zwierze : getLista_zwierzat()) {
+			// pozycja += 1;
+			// listaZwierzatString.add(pozycja + " " + zwierze.getNazwa());
+			listaZwierzatString.add(zwierze.getNazwa());
+		}
+		return listaZwierzatString;
 	}
 
 	public void zmniejszIloscMiejsc() {

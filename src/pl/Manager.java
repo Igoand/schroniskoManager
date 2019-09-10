@@ -4,10 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import pliki.ObslugaTxtOdczyt;
+import pliki.ObslugaTxtZapis;
+
 public class Manager {
 
 	public static void main(String[] args) throws IOException {
+		String nazwaPliku = "daneSchorniska.txt";
 		Schronisko schronisko = new Schronisko(2);
+
+		ObslugaTxtOdczyt odczytPliku = new ObslugaTxtOdczyt(nazwaPliku);
+		schronisko.setLista_zwierzat(odczytPliku.odczytajPlik());
+
 		System.out.printf("Witaj w schronisku!\n" + "Co chcesz zrobiæ?\n" + "d - dodaj zwierze\n" + "u - uzun zwierze\n"
 				+ "s - stan schroniska\nk - koniec pracy\n\n");
 		String opcja = "p";
@@ -28,6 +36,8 @@ public class Manager {
 				break;
 			case "k": {
 				System.out.print("Koniec pracy. Zamykam program.\n");
+				ObslugaTxtZapis zapisPliku = new ObslugaTxtZapis(nazwaPliku);
+				zapisPliku.zapisDoPliku(schronisko.listaZwierzatString());
 				System.exit(0);
 				break;
 			}
