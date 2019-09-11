@@ -15,6 +15,7 @@ public class Manager {
 
 		String nazwaPliku = "daneSchorniska.txt";
 		Schronisko schronisko = new Schronisko(3);
+
 		EventQueue.invokeLater(new Runnable() {
 
 			@Override
@@ -23,11 +24,12 @@ public class Manager {
 
 			}
 		});
+
 		ObslugaTxtOdczyt odczytPliku = new ObslugaTxtOdczyt(nazwaPliku);
 		schronisko.setLista_zwierzat(odczytPliku.odczytajPlik());
 
-		System.out.printf("Witaj w schronisku!\n" + "Co chcesz zrobi�?\n" + "d - dodaj zwierze\n" + "u - uzun zwierze\n"
-				+ "s - stan schroniska\nk - koniec pracy\n\n");
+		System.out.printf("Witaj w schronisku!\n" + "Co chcesz zrobić?\n" + "d - dodaj zwierze\n"
+				+ "u - uzun zwierze\n" + "s - stan schroniska\nk - koniec pracy\n\n");
 		String opcja = "p";
 		InputStreamReader inputStreamReader = new InputStreamReader(System.in);
 		BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -45,7 +47,7 @@ public class Manager {
 				schronisko.usunZwierze(new Zwierze(bufferedReader.readLine()));
 				break;
 			case "k": {
-				System.out.print("Koniec pracy. Zamykam program.\n");
+				System.out.print("Koniec pracy. Zamykam program.ąśćęółńćżż\n");
 				ObslugaTxtZapis zapisPliku = new ObslugaTxtZapis(nazwaPliku);
 				zapisPliku.zapisDoPliku(schronisko.listaZwierzatString());
 				System.exit(0);

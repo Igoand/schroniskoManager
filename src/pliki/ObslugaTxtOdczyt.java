@@ -11,13 +11,26 @@ public class ObslugaTxtOdczyt {
 
 	Scanner plikO;
 
-	public ObslugaTxtOdczyt(String plikO) throws FileNotFoundException {
-		super();
-		this.plikO = new Scanner(new File(plikO));
+	public ObslugaTxtOdczyt(String plikO) {
+		try {
+			this.plikO = new Scanner(new File(plikO));
+		} catch (FileNotFoundException e) {
+			try {
+				ObslugaTxtZapis utworzPlik;
+				utworzPlik = new ObslugaTxtZapis(plikO);
+				utworzPlik.zapisDoPliku(new ArrayList<String>() {
+					{
+						add("");
+					}
+				});
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
 	}
 
 	public ObslugaTxtOdczyt() throws FileNotFoundException {
-
 		this.plikO = new Scanner(new File("pliczek.txt"));
 	}
 

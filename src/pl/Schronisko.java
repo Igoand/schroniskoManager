@@ -78,6 +78,11 @@ public class Schronisko {
 		return listaZwierzatString;
 	}
 
+	public ArrayList<Zwierze> listaZwierzatObj() {
+		// ArrayList<Zwierze> listaZwierzatString = new ArrayList<>();
+		return this.lista_zwierzat;
+	}
+
 	public void zmniejszIloscMiejsc() {
 		setLiczbaMiejsc(getLiczbaMiejsc() - 1);
 	}
