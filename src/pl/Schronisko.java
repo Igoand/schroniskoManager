@@ -1,62 +1,50 @@
 package pl;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+import pliki.ObslugaTxtZapis;
+
 public class Schronisko {
+	// Atrybuty klasy
+	private int iloscZajetychMiejsc;
 	private int liczbaMiejsc;
 	private ArrayList<Zwierze> lista_zwierzat = new ArrayList<Zwierze>();
 
-	public ArrayList<Zwierze> getLista_zwierzat() {
-		return lista_zwierzat;
-	}
-
-	public void setLista_zwierzat(ArrayList<Zwierze> lista_zwierzat) {
-		this.lista_zwierzat = lista_zwierzat;
-	}
-
-	/**
-	 * @param liczbaMiejsc
-	 */
+	// Konstruktor
 	public Schronisko(int liczbaMiejsc) {
 		super();
 		this.liczbaMiejsc = liczbaMiejsc;
 	}
-	/*
-	 * public Schronisko() { this.liczbaMiejsc = 3; }
-	 */
 
-	public void sprawdzLiczbeMiejsc() {
-		this.listaZwierzat();
-		if (getLiczbaMiejsc() > 0) {
-			System.out.printf("Wolne miejsca: %d\n", getLiczbaMiejsc());
-		} else {
-			System.out.println("Wszystkie miejsca zaj�te");
-		}
-	}
-
-	public void setLiczbaMiejsc(int liczbaMiejsc) {
-		this.liczbaMiejsc = liczbaMiejsc;
-	}
-
-	public void dodajZwierze(Zwierze zwierze) {
-		if (getLiczbaMiejsc() > 0) {
-			this.lista_zwierzat.add(zwierze);
-			zmniejszIloscMiejsc();
-		} else {
-			System.out.println("Nie mo�na doda� zwierzaka. Schronisko jest pe�ne.");
-		}
+	public boolean czyMogeDodacZwierze() {
+		if (getLiczbaMiejsc() - getIloscZajetychMiejsc() > 0) {
+			return true;
+		} else
+			return false;
 	};
 
-	public void usunZwierze(Zwierze zwierze) {
-		for (int i = 0; i < this.lista_zwierzat.size(); i++) {
-			if (lista_zwierzat.get(i).getNazwa().equals(zwierze.getNazwa())) {
-				System.out.printf("Usuni�to zwierz� %s\n", lista_zwierzat.get(i).getNazwa());
-				lista_zwierzat.remove(i);
-				zwiekszIloscMiejsc();
-			} else {
-				// System.out.printf("Brak %s w schronisku.\n", zwierze.getNazwa());
-			}
+	// Metody klasy
+	public void dodajZwierze(Zwierze zwierze) {
+		if (getLiczbaMiejsc() - getIloscZajetychMiejsc() > 0) {
+			this.lista_zwierzat.add(zwierze);
+			// zmniejszIloscMiejsc();
+			zwiekszIloscZajetychMiejsc();
+		} else {
+			System.out.println("Nie można dodać zwierzaka. Schronisko jest pełne.");
 		}
+	}
+
+	public int getIloscZajetychMiejsc() {
+		return iloscZajetychMiejsc;
+	}
+
+	public int getLiczbaMiejsc() {
+		return liczbaMiejsc;
+	}
+
+	public ArrayList<Zwierze> getLista_zwierzat() {
+		return lista_zwierzat;
 	}
 
 	public void listaZwierzat() {
@@ -65,6 +53,11 @@ public class Schronisko {
 			pozycja += 1;
 			System.out.printf("%d: %s\n", pozycja, zwierze.getNazwa());
 		}
+	}
+
+	public ArrayList<Zwierze> listaZwierzatObj() {
+		// ArrayList<Zwierze> listaZwierzatString = new ArrayList<>();
+		return this.lista_zwierzat;
 	}
 
 	public ArrayList<String> listaZwierzatString() {
@@ -78,20 +71,61 @@ public class Schronisko {
 		return listaZwierzatString;
 	}
 
-	public ArrayList<Zwierze> listaZwierzatObj() {
-		// ArrayList<Zwierze> listaZwierzatString = new ArrayList<>();
-		return this.lista_zwierzat;
+	public void setIloscZajetychMiejsc(int iloscZajetychMiejsc) {
+		this.iloscZajetychMiejsc = iloscZajetychMiejsc;
+	}
+
+	public void setLiczbaMiejsc(int liczbaMiejsc) {
+		this.liczbaMiejsc = liczbaMiejsc;
+	}
+
+	public void setLista_zwierzat(ArrayList<Zwierze> lista_zwierzat) {
+		this.lista_zwierzat = lista_zwierzat;
+	}
+
+	public void sprawdzLiczbeMiejsc() {
+		this.listaZwierzat();
+		if (getLiczbaMiejsc() > 0) {
+			System.out.printf("Wolne miejsca: %d\n", getLiczbaMiejsc() - getIloscZajetychMiejsc());
+		} else {
+			System.out.println("Wszystkie miejsca zajęte");
+		}
+	}
+
+	public void usunZwierze(Zwierze zwierze) {
+		for (int i = 0; i < this.lista_zwierzat.size(); i++) {
+			if (lista_zwierzat.get(i).getNazwa().equals(zwierze.getNazwa())) {
+				System.out.printf("Usunięto zwierzę %s\n", lista_zwierzat.get(i).getNazwa());
+				lista_zwierzat.remove(i);
+				zmniejszIloscZajetychMiejsc();
+			}
+		}
+	}
+
+	public boolean zapiszStanSchroniska(ArrayList<String> daneWejsciwe) {
+		try {
+			ObslugaTxtZapis zapisPliku = new ObslugaTxtZapis(Manager.nazwaPliku);
+			zapisPliku.zapisDoPliku(daneWejsciwe);
+			return true;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public void zmniejszIloscMiejsc() {
 		setLiczbaMiejsc(getLiczbaMiejsc() - 1);
 	}
 
+	private void zmniejszIloscZajetychMiejsc() {
+		this.iloscZajetychMiejsc -= 1;
+	}
+
 	public void zwiekszIloscMiejsc() {
 		setLiczbaMiejsc(getLiczbaMiejsc() + 1);
 	}
 
-	public int getLiczbaMiejsc() {
-		return liczbaMiejsc;
+	private void zwiekszIloscZajetychMiejsc() {
+		this.iloscZajetychMiejsc += 1;
 	}
 }

@@ -2,14 +2,17 @@ package pl;
 
 import java.awt.EventQueue;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import gui.MyFrame;
 import pliki.ObslugaTxtOdczyt;
 import pliki.ObslugaTxtZapis;
 
 public class Manager {
+	public static String nazwaPliku = "daneSchorniska.txt";
 
 	public static void main(String[] args) throws IOException {
 
@@ -27,9 +30,10 @@ public class Manager {
 
 		ObslugaTxtOdczyt odczytPliku = new ObslugaTxtOdczyt(nazwaPliku);
 		schronisko.setLista_zwierzat(odczytPliku.odczytajPlik());
+		schronisko.setIloscZajetychMiejsc(schronisko.getLista_zwierzat().size());
 
-		System.out.printf("Witaj w schronisku!\n" + "Co chcesz zrobić?\n" + "d - dodaj zwierze\n"
-				+ "u - uzun zwierze\n" + "s - stan schroniska\nk - koniec pracy\n\n");
+		System.out.printf("Witaj w schronisku!\n" + "Co chcesz zrobić?\n" + "d - dodaj zwierze\n" + "u - uzun zwierze\n"
+				+ "s - stan schroniska\nk - koniec pracy\n\n");
 		String opcja = "p";
 		InputStreamReader inputStreamReader = new InputStreamReader(System.in);
 		BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -48,8 +52,9 @@ public class Manager {
 				break;
 			case "k": {
 				System.out.print("Koniec pracy. Zamykam program.ąśćęółńćżż\n");
-				ObslugaTxtZapis zapisPliku = new ObslugaTxtZapis(nazwaPliku);
-				zapisPliku.zapisDoPliku(schronisko.listaZwierzatString());
+//				ObslugaTxtZapis zapisPliku = new ObslugaTxtZapis(nazwaPliku);
+//				zapisPliku.zapisDoPliku(schronisko.listaZwierzatString());
+				schronisko.zapiszStanSchroniska(schronisko.listaZwierzatString());
 				System.exit(0);
 				break;
 			}

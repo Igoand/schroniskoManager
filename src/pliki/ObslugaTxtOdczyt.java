@@ -11,6 +11,7 @@ public class ObslugaTxtOdczyt {
 
 	Scanner plikO;
 
+	@SuppressWarnings("serial")
 	public ObslugaTxtOdczyt(String plikO) {
 		try {
 			this.plikO = new Scanner(new File(plikO));
