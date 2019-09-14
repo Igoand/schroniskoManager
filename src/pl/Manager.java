@@ -8,6 +8,10 @@ import java.io.InputStreamReader;
 import gui.SchroniskoGUI;
 import pliki.ObslugaTxtOdczyt;
 
+/**
+ * @author igoreczek
+ * Test commita do etap 2
+ */
 public class Manager {
 	public static String nazwaPliku = "daneSchorniska.txt";
 
