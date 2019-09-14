@@ -2,14 +2,11 @@ package pl;
 
 import java.awt.EventQueue;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
-import gui.MyFrame;
+import gui.SchroniskoGUI;
 import pliki.ObslugaTxtOdczyt;
-import pliki.ObslugaTxtZapis;
 
 public class Manager {
 	public static String nazwaPliku = "daneSchorniska.txt";
@@ -17,14 +14,13 @@ public class Manager {
 	public static void main(String[] args) throws IOException {
 
 		String nazwaPliku = "daneSchorniska.txt";
-		Schronisko schronisko = new Schronisko(3);
+		Schronisko schronisko = new Schronisko(15);
 
 		EventQueue.invokeLater(new Runnable() {
 
 			@Override
 			public void run() {
-				new MyFrame(schronisko);
-
+				new SchroniskoGUI(schronisko);
 			}
 		});
 
@@ -52,8 +48,6 @@ public class Manager {
 				break;
 			case "k": {
 				System.out.print("Koniec pracy. Zamykam program.ąśćęółńćżż\n");
-//				ObslugaTxtZapis zapisPliku = new ObslugaTxtZapis(nazwaPliku);
-//				zapisPliku.zapisDoPliku(schronisko.listaZwierzatString());
 				schronisko.zapiszStanSchroniska(schronisko.listaZwierzatString());
 				System.exit(0);
 				break;

@@ -3,8 +3,6 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
@@ -13,15 +11,16 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
-import com.sun.glass.events.WindowEvent;
-
+import mail.ObslugaMail;
 import pl.Schronisko;
 import pl.Zwierze;
-import pliki.ObslugaTxtZapis;
 
-@SuppressWarnings("serial")
-public class MyFrame extends JFrame implements ActionListener {
+public class SchroniskoGUI extends JFrame implements ActionListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7844781897347264130L;
 	private JButton dodaj;
 	private JButton usun;
 	private JButton status;
@@ -29,7 +28,7 @@ public class MyFrame extends JFrame implements ActionListener {
 	private Schronisko schronisko;
 	private JList<String> listZwierzatGUI;
 
-	public MyFrame(Schronisko skronisko) {
+	public SchroniskoGUI(Schronisko skronisko) {
 		super("Hello World!");
 		this.schronisko = skronisko;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,7 +51,7 @@ public class MyFrame extends JFrame implements ActionListener {
 		dodaj.addActionListener(this);
 		usun.addActionListener(this);
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				System.out.print("Zamykam program i zapisuję stan danych.\n");
@@ -60,22 +59,16 @@ public class MyFrame extends JFrame implements ActionListener {
 				System.out.print("Zapisane. Zamykam.");
 			}
 		}));
-/*		addWindowListener(new WindowAdapter() {
-			@SuppressWarnings("unused")
-			public void windowClosing(WindowEvent e) {
-				System.out.print("Zamykam program i zapisuję stan danych.");
-				schronisko.zapiszStanSchroniska(dajElemenyListyGiu(listZwierzatGUI));
-				System.exit(0);
-			}
-		});*/
-
-//		status.addActionListener(this);
-
 	}
 
+	/**
+	 * Obsługa elementów GUI. Obsługa przycisków i wysyłania maila w przypadku
+	 * niewielkiej ilości miejsca.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
+		// Obsługa dodawania zwierzaka
 		if (source == dodaj) {
 			if (schronisko.czyMogeDodacZwierze() == true) {
 				String nazwaZwierzaka = JOptionPane.showInputDialog("Podaj nazwę zwierzaka.");
@@ -85,19 +78,26 @@ public class MyFrame extends JFrame implements ActionListener {
 			} else {
 				JOptionPane.showMessageDialog(null, "Brak wolnych miejsc w schronisku!");
 			}
-		} else if (source == usun) {
-			// TODO Dodać obsługę usuwania zwierzaków z listy.
+		}
+//		Obsługa usuwania zwierzaka wybranego z listy
+		else if (source == usun) {
+			schronisko.usunZwierze(new Zwierze(listZwierzatGUI.getSelectedValue()));
+			listZwierzatGUI.setListData(dajTabliceZwierzat());
 		} else if (source == status) {
 			listZwierzatGUI.setListData(dajTabliceZwierzat());
 			listZwierzatGUI.setVisible(true);
 			listZwierzatGUI.setSize(150, 150);
 		}
-	}
+		// Obsługa wysyłania maila jeśli jest mało miejsca
+		if (schronisko.getLiczbaMiejsc() - schronisko.getIloscZajetychMiejsc() < 5) {
 
-//	@Override
-//	public synchronized void addWindowListener(WindowListener l) {
-//		super.addWindowListener(l);
-//	}
+			// host smtp.wp.pl
+			// port 587
+			// login ad.grzyb03
+			// pass Zaq-1234
+			new ObslugaMail("smtp.wp.pl", 587, "ad.grzyb03", "1234", dajTabliceZwierzat());
+		}
+	}
 
 	public DefaultListModel<Zwierze> defList() {
 		DefaultListModel<Zwierze> zwierzakiList = new DefaultListModel<>();
