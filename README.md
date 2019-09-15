@@ -1,1 +1,2 @@
 # schroniskoManager
+# test do merge
