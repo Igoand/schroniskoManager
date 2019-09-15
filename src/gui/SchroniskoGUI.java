@@ -37,7 +37,7 @@ public class SchroniskoGUI extends JFrame implements ActionListener {
 
 	// Konstruktor Klasy SchroniskoGUI
 	public SchroniskoGUI(Schronisko skronisko) {
-		// super("Hello World!");
+
 		this.schronisko = skronisko;
 
 		// Definicja elementów GUI
@@ -78,7 +78,6 @@ public class SchroniskoGUI extends JFrame implements ActionListener {
 			@Override
 			public void run() {
 				System.out.print("Zamykam program i zapisuję stan danych.\n");
-				// schronisko.zapiszStanSchroniska(dajElemenyListyGiu(listZwierzatGUI));
 				schronisko.zapiszStanSchronisa(schronisko.getLista_zwierzat());
 				System.out.print("Zapisane. Zamykam.");
 			}
