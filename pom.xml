@@ -5,6 +5,10 @@
 	<groupId>schroniskoManager</groupId>
 	<artifactId>schroniskoManager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<java.version>11</java.version>
+	</properties>
+	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
