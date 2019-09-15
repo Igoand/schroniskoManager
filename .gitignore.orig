@@ -1,10 +1,4 @@
-# Compiled class file
-*.class
 
-<<<<<<< HEAD
-# Log file
-*.log
-=======
 #Ignore thumbnails created by Windows
 Thumbs.db
 #Ignore files built by Visual Studio
@@ -25,6 +19,7 @@ Thumbs.db
 *.cache
 *.ilk
 *.log
+<<<<<<< etapI
 [Bb]in
 [Dd]ebug*/
 *.lib
@@ -38,7 +33,7 @@ _ReSharper*/
 packages/
 /.classpath
 /src/module-info.java
->>>>>>> etapI
+=======
 
 # BlueJ files
 *.ctxt
@@ -57,9 +52,5 @@ packages/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-<<<<<<< HEAD
-
-# klocki lego
-=======
 /bin/
->>>>>>> etapI
+>>>>>>> local
