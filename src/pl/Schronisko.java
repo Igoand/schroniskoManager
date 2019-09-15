@@ -113,6 +113,17 @@ public class Schronisko {
 		}
 	}
 
+	public boolean zapiszStanSchronisa(ArrayList<Zwierze> daneWejsciowe) {
+		try {
+			ObslugaTxtZapis zapisPliku = new ObslugaTxtZapis(Manager.nazwaPliku);
+			zapisPliku.zapisDoPlikuJSON(daneWejsciowe);
+			return true;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 	public void zmniejszIloscMiejsc() {
 		setLiczbaMiejsc(getLiczbaMiejsc() - 1);
 	}
@@ -127,5 +138,24 @@ public class Schronisko {
 
 	private void zwiekszIloscZajetychMiejsc() {
 		this.iloscZajetychMiejsc += 1;
+	}
+
+	public void edytujZwierze(String zwierzeDoZmiany, Zwierze zwierzeZmienione) {
+		for (Zwierze zwierze : getLista_zwierzat()) {
+			if (zwierze.getNazwa().equals(zwierzeDoZmiany)) {
+				zwierze.setNazwa(zwierzeZmienione.getNazwa());
+				zwierze.setStadZdrowia(zwierzeZmienione.getStadZdrowia());
+				zwierze.setPlec(zwierzeZmienione.getPlec());
+			}
+		}
+	}
+
+	public Zwierze dajZwierzakaPoNazwie(String selectedValue) {
+		for (Zwierze zwierze : getLista_zwierzat()) {
+			if (zwierze.getNazwa().equals(selectedValue)) {
+				return zwierze;
+			}
+		}
+		return null;
 	}
 }

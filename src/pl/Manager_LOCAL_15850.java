@@ -9,7 +9,8 @@ import gui.SchroniskoGUI;
 import pliki.ObslugaTxtOdczyt;
 
 /**
- * @author igoreczek Test commita do etap 2 dodatek do commita
+ * @author igoreczek
+ * etap 1
  */
 public class Manager {
 	public static String nazwaPliku = "daneSchorniska.txt";
@@ -28,12 +29,11 @@ public class Manager {
 		});
 
 		ObslugaTxtOdczyt odczytPliku = new ObslugaTxtOdczyt(nazwaPliku);
-		//schronisko.setLista_zwierzat(odczytPliku.odczytajPlik());
-		schronisko.setLista_zwierzat(odczytPliku.odczytajPlikJSON());
+		schronisko.setLista_zwierzat(odczytPliku.odczytajPlik());
 		schronisko.setIloscZajetychMiejsc(schronisko.getLista_zwierzat().size());
 
-//		System.out.printf("Witaj w schronisku!\n" + "Co chcesz zrobić?\n" + "d - dodaj zwierze\n" + "u - uzun zwierze\n"
-//				+ "s - stan schroniska\nk - koniec pracy\n\n");
+		System.out.printf("Witaj w schronisku!\n" + "Co chcesz zrobić?\n" + "d - dodaj zwierze\n" + "u - uzun zwierze\n"
+				+ "s - stan schroniska\nk - koniec pracy\n\n");
 		String opcja = "p";
 		InputStreamReader inputStreamReader = new InputStreamReader(System.in);
 		BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -45,10 +45,10 @@ public class Manager {
 				schronisko.sprawdzLiczbeMiejsc();
 				break;
 			case "d":
-				// schronisko.dodajZwierze(new Zwierze(bufferedReader.readLine()));
+				schronisko.dodajZwierze(new Zwierze(bufferedReader.readLine()));
 				break;
 			case "u":
-				// schronisko.usunZwierze(new Zwierze(bufferedReader.readLine()));
+				schronisko.usunZwierze(new Zwierze(bufferedReader.readLine()));
 				break;
 			case "k": {
 				System.out.print("Koniec pracy. Zamykam program.ąśćęółńćżż\n");

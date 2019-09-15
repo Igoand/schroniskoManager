@@ -2,8 +2,12 @@ package pliki;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import pl.Zwierze;
 
@@ -49,5 +53,20 @@ public class ObslugaTxtOdczyt {
 			odczytaneZwierzeta.add(new Zwierze(getPlikO().nextLine()));
 		}
 		return odczytaneZwierzeta;
+	}
+
+	public ArrayList<Zwierze> odczytajPlikJSON() {
+		String odczytanyJson = "";
+		while (getPlikO().hasNext()) {
+			odczytanyJson += getPlikO().nextLine();
+		}
+
+		Gson gson = new Gson();
+		Type type = new TypeToken<ArrayList<Zwierze>>() {
+		}.getType();
+		
+		ArrayList<Zwierze> zwierzaki = gson.fromJson(odczytanyJson, type);
+
+		return zwierzaki;
 	}
 }

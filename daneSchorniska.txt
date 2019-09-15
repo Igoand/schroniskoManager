@@ -1,11 +1,1 @@
-Kot
-Łoś
-Koala
-Bocian
-Małpka
-Kotek
-Blablador
-Wole
-Śrut
-Gutas
-Brud
+[{"nazwa":"Baranek","stadZdrowia":"zdrowy","plec":"samiec"},{"nazwa":"Janek","stadZdrowia":"zdrowy","plec":"samiec"},{"nazwa":"Brajanek","stadZdrowia":"chory","plec":"m"},{"nazwa":"Kicia Becia","stadZdrowia":"gónwo","plec":"kobieta"},{"nazwa":"Jan","stadZdrowia":"Pablo","plec":"3"},{"nazwa":"Konik","stadZdrowia":"zdrowy","plec":"samiec"},{"nazwa":"Janina","stadZdrowia":"zdrowa","plec":"samica"},{"nazwa":"Janinka","stadZdrowia":"zdrowa","plec":"samica"},{"nazwa":"Wacek","stadZdrowia":"chory","plec":"samiec"},{"nazwa":"Kamil","stadZdrowia":"chory","plec":"samiec"},{"nazwa":"Brajanek","stadZdrowia":"chory","plec":"samiec"},{"nazwa":"sdf","stadZdrowia":"asdf","plec":"asdfasdf"}]
