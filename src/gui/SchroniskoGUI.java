@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import mail.ObslugaMail;
 import pl.Schronisko;
 import pl.Zwierze;
 
@@ -138,8 +139,7 @@ public class SchroniskoGUI extends JFrame implements ActionListener {
 			// port 587
 			// login ad.grzyb03
 			// pass Zaq-1234
-			// new ObslugaMail("smtp.wp.pl", 587, "ad.grzyb03", "Zaq-1234",
-			// dajTabliceZwierzat());
+			new ObslugaMail("smtp.wp.pl", 587, "ad.grzyb03", "Zaq-1234", dajTabliceZwierzat());
 		}
 	}
 
