@@ -1,4 +1,4 @@
-package pl;
+package main;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

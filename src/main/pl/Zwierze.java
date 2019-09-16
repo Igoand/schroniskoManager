@@ -1,4 +1,4 @@
-package pl;
+package main;
 
 public class Zwierze {
 
