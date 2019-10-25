@@ -53,8 +53,8 @@ public class ObslugaMail {
 
 		try {
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("ad.grzyb03@wp.pl"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("igorczyk@gmail.com"));
+			message.setFrom(new InternetAddress("sample_adress_mail@mail.com"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("sample_adress_mail@mail.com"));
 			message.setSubject("Schronisko Info");
 
 			String zwierzaki = "<br>";
